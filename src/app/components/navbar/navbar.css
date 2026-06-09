@@ -1,0 +1,74 @@
+/* ================================
+   NAVBAR GLOBAL
+================================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0d1117; /* El color oscuro que querías */
+  padding: 0 2rem;
+  height: 65px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que siempre esté al frente */
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Una ligera sombra para separarlo del contenido */
+}
+
+.brand-text {
+  color: #39ff14; /* Verde marca */
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #39ff14;
+}
+
+.btn-login {
+  background-color: #39ff14;
+  color: #000;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+  background-color: #2dcc10;
+}
+
+/* ================================
+   RESPONSIVE NAVBAR
+================================ */
+/*@media (max-width: 768px) {
+  .navbar-links {
+    display: none; /* Oculta los links en celular para no romper el diseño */
+ /* }
+  .navbar {
+    padding: 0 1rem;
+  }
+}*/

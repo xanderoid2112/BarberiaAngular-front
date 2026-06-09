@@ -1,0 +1,122 @@
+<!-- HEADER -->
+<div class="gestion-header">
+  <span class="header-icon">📅</span>
+  <h1 class="header-title">Gestion de Citas</h1>
+  <p class="header-subtitle">Panel de administración para gestionar todas las citas</p>
+</div>
+
+<!-- STATS CARDS -->
+<div class="stats-grid">
+  <div class="stat-card stat-green">
+    <span class="stat-icon">📅</span>
+    <span class="stat-number">5</span>
+    <span class="stat-label">Total Citas</span>
+  </div>
+  <div class="stat-card stat-blue">
+    <span class="stat-icon">🕐</span>
+    <span class="stat-number">2</span>
+    <span class="stat-label">Pendientes</span>
+  </div>
+  <div class="stat-card stat-blue">
+    <span class="stat-icon">✅</span>
+    <span class="stat-number">1</span>
+    <span class="stat-label">Confirmadas</span>
+  </div>
+  <div class="stat-card stat-blue">
+    <span class="stat-icon">✔✔</span>
+    <span class="stat-number">1</span>
+    <span class="stat-label">Completadas</span>
+  </div>
+</div>
+
+<!-- TABLE SECTION -->
+<div class="citas-container">
+
+  <!-- Table top bar -->
+  <div class="table-topbar">
+    <div class="table-topbar-left">
+      <span class="table-icon">≡</span>
+      <span class="table-label">Lista de citas</span>
+    </div>
+    <div class="table-topbar-right">
+      <button class="btn-exportar">📤 Exportar</button>
+      <button class="btn-actualizar">↺ Actualizar</button>
+    </div>
+  </div>
+
+  <!-- Filters row -->
+  <div class="filters-row">
+    <select class="filter-select">
+      <option>Todos los estados</option>
+      <option>Confirmada</option>
+      <option>Pendiente</option>
+      <option>Cancelada</option>
+    </select>
+    <select class="filter-select">
+      <option>Todos los motivos</option>
+      <option>Corte de barbero</option>
+      <option>Corte estilista</option>
+      <option>Afeitado completo</option>
+    </select>
+    <select class="filter-select">
+      <option>dd/ mm/aaaa</option>
+    </select>
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Buscar Clientes..." />
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <table class="citas-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Email</th>
+        <th>Motivo</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+   <tbody>
+      @for (cita of citasLista(); track cita.id) {
+        <tr>
+          <td>{{ cita.id }}</td>
+          <td>{{ cita.usuario?.nombre || 'Cliente Anónimo' }}</td>
+          <td>
+            <a [href]="'mailto:' + cita.usuario?.email" class="email-link">
+              {{ cita.usuario?.email }}
+            </a>
+          </td>
+          <td>Corte de cabello</td> <td>{{ cita.fecha }}</td>
+          <td>{{ cita.hora }}</td>
+          <td>
+            <span class="estado-badge"
+                  [ngClass]="{
+                    'estado-confirmada': cita.estado === 'CONFIRMADA',
+                    'estado-pendiente': cita.estado === 'PENDIENTE',
+                    'estado-cancelada': cita.estado === 'CANCELADA'
+                  }">
+              {{ cita.estado }}
+            </span>
+          </td>
+          <td class="acciones">
+            <button class="btn-check" title="Confirmar">✔</button>
+            <button class="btn-edit" title="Editar">✏️</button>
+            <button class="btn-delete" title="Cancelar">🗑️</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="8" style="text-align: center; padding: 2rem; color: #666;">
+            Cargando información o no hay citas registradas en el sistema...
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

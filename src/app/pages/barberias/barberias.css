@@ -1,0 +1,328 @@
+/* ================================
+   VARIABLES (heredadas del proyecto)
+================================ */
+:root {
+  --color-green: #39ff14;
+  --color-green-dark: #2dcc10;
+  --color-blue: #1a6ef5;
+  --color-white: #ffffff;
+  --color-gray-light: #f0f0f0;
+  --color-gray-text: #555;
+  --color-border: #d0d0d0;
+}
+
+/* ================================
+   HEADER
+================================ */
+.barberias-header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.header-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-gray-text);
+  line-height: 1.6;
+}
+
+/* ================================
+   SEARCH BAR
+================================ */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.search-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  white-space: nowrap;
+  border-right: 1px solid var(--color-border);
+  padding-right: 1rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.search-icon {
+  font-size: 1rem;
+  color: #888;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  color: #333;
+  width: 100%;
+  background: transparent;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+/* ================================
+   MAIN LAYOUT
+================================ */
+.barberias-content {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+  align-items: flex-start;
+}
+
+/* ================================
+   SIDEBAR FILTERS
+================================ */
+.filters-sidebar {
+  flex: 0 0 220px;
+  background: var(--color-gray-light);
+  border-radius: 10px;
+  padding: 1.5rem 1.2rem;
+  border: 1px solid var(--color-border);
+}
+
+.filters-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.filters-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.filter-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-green-dark);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter-item label {
+  font-size: 0.88rem;
+  color: #333;
+  cursor: pointer;
+  line-height: 1.3;
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.btn-apply {
+  background-color: var(--color-green);
+  color: #000;
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.btn-apply:hover {
+  background-color: var(--color-green-dark);
+}
+
+.btn-clear {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.btn-clear:hover {
+  background-color: #1558cc;
+}
+
+/* ================================
+   CARDS GRID
+================================ */
+.barberias-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  align-content: start;
+}
+
+.barberia-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.barberia-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.card-image-wrap {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 0.9rem 1rem 1rem;
+}
+
+.card-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.tag-hombres  { background-color: #3b82f6; }
+.tag-mujeres  { background-color: #ec4899; }
+.tag-ninos    { background-color: #06b6d4; }
+.tag-express  { background-color: #f59e0b; }
+.tag-premium  { background-color: #8b5cf6; }
+.tag-barrio   { background-color: #10b981; }
+
+.card-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 0.4rem;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.rating-num {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #111;
+}
+
+.stars {
+  color: #f5a623;
+  font-size: 0.95rem;
+}
+
+.btn-ingresar {
+  background-color: var(--color-green);
+  color: #000;
+  border: none;
+  padding: 0.35rem 1rem;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-ingresar:hover {
+  background-color: var(--color-green-dark);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .barberias-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .barberias-content {
+    flex-direction: column;
+  }
+
+  .filters-sidebar {
+    flex: unset;
+    width: 100%;
+  }
+
+  .barberias-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .search-label {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    width: 100%;
+  }
+}

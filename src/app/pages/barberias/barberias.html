@@ -1,0 +1,95 @@
+<!-- HEADER -->
+<div class="barberias-header">
+  <div class="header-icon">🏪</div>
+  <h1 class="header-title">Barberias</h1>
+  <p class="header-subtitle">
+    Descubre diferentes barberias con barberos<br />
+    profesionales que te daran una experiencia unica
+  </p>
+</div>
+
+<!-- SEARCH BAR -->
+<div class="search-container">
+  <span class="search-label">Barberias disponibles</span>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" placeholder="Buscar barberias...." />
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="barberias-content">
+
+  <!-- SIDEBAR FILTERS -->
+  <aside class="filters-sidebar">
+    <h3 class="filters-title">Categorias</h3>
+    <ul class="filters-list">
+      <li class="filter-item">
+        <input type="checkbox" id="hombres" class="filter-checkbox" />
+        <label for="hombres">Especializado para hombres</label>
+      </li>
+      <li class="filter-item">
+        <input type="checkbox" id="mujeres" class="filter-checkbox" />
+        <label for="mujeres">Especializado para mujeres</label>
+      </li>
+      <li class="filter-item">
+        <input type="checkbox" id="ninos" class="filter-checkbox" />
+        <label for="ninos">Especializado para niños</label>
+      </li>
+      <li class="filter-item">
+        <input type="checkbox" id="express" class="filter-checkbox" />
+        <label for="express">Barberia Express</label>
+      </li>
+      <li class="filter-item">
+        <input type="checkbox" id="premium" class="filter-checkbox" />
+        <label for="premium">Barberia Premium</label>
+      </li>
+      <li class="filter-item">
+        <input type="checkbox" id="barrio" class="filter-checkbox" />
+        <label for="barrio">Barberia de Barrio</label>
+      </li>
+    </ul>
+
+    <div class="filter-actions">
+      <button class="btn-apply">✓ Aplicar Filtro</button>
+      <button class="btn-clear">↺ Limpiar</button>
+    </div>
+  </aside>
+
+
+<div class="barberias-grid">
+
+    @for (barberia of barberiasLista(); track barberia.id) {
+      <div class="barberia-card">
+        <div class="card-image-wrap">
+          <img src="/assets/barberias/barbershop.jpg" alt="BarberShop" class="card-img" />
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-hombres">Hombres</span>
+            <span class="tag tag-premium">Premium</span>
+          </div>
+          
+          <h3 class="card-name">{{ barberia.nombre }}</h3>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 8px;">
+            {{ barberia.direccion }}
+          </p>
+          
+          <div class="card-rating">
+            <span class="rating-num">4.5</span>
+            <span class="stars">★★★★½</span>
+          </div>
+          
+     <button class="btn-ingresar" routerLink="/equipo">
+  Ingresar
+</button>
+        </div>
+      </div>
+    } @empty {
+      <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+        <p style="color: #666;">Cargando barberías o no hay locales disponibles...</p>
+      </div>
+    }
+
+  </div>
+</div>

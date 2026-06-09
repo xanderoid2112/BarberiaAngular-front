@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="brand-text">BarberFlow</div>
+  
+  <ul class="navbar-links">
+    <li><a routerLink="/home" class="nav-link">Inicio</a></li>
+<li><a routerLink="/home" fragment="nosotros" class="nav-link">Nosotros</a></li>
+    <li><a routerLink="/home" fragment="tendencias" class="nav-link">Tendencias</a></li>
+    <li><a routerLink="/home" fragment="unete" class="nav-link">Unete</a></li>
+    <li><a routerLink="/barberias" class="nav-link">Barberias</a></li>
+    
+    @if (isLoggedIn) {
+      <li><a routerLink="/mis-citas" class="nav-link">Mis citas</a></li>
+      <li><a routerLink="/dashboard-cliente" class="nav-link">Mis datos</a></li>
+    }
+  </ul>
+
+  @if (isLoggedIn) {
+    <button (click)="cerrarSesion()" class="btn-login" style="background-color: #f87171; color: white;">Cerrar sesión</button>
+  } @else {
+    <button routerLink="/login" class="btn-login">Iniciar sesión</button>
+  }
+</nav>

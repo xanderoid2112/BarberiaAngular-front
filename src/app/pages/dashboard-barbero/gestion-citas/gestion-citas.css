@@ -1,0 +1,314 @@
+/* ================================
+   HEADER
+================================ */
+.gestion-header {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+}
+
+.gestion-header .header-icon {
+  font-size: 2.2rem;
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.gestion-header .header-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111;
+  display: inline;
+}
+
+.gestion-header .header-subtitle {
+  font-size: 0.92rem;
+  color: #666;
+  margin-top: 0.4rem;
+}
+
+/* ================================
+   STATS GRID
+================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 1.5rem auto 2rem;
+  padding: 0 1.5rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  border-radius: 10px;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.stat-green {
+  background-color: #bbf7a0;
+  border: 1px solid #86efac;
+}
+
+.stat-blue {
+  background-color: #bfdbfe;
+  border: 1px solid #93c5fd;
+}
+
+.stat-icon {
+  font-size: 1.6rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* ================================
+   TABLE CONTAINER
+================================ */
+.citas-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Top bar */
+.table-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.table-icon {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.table-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.table-topbar-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-exportar {
+  background: #39ff14;
+  color: #000;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-exportar:hover { background: #2dcc10; }
+
+.btn-actualizar {
+  background: #1a6ef5;
+  color: #fff;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-actualizar:hover { background: #1558cc; }
+
+/* Filters row */
+.filters-row {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.83rem;
+  color: #333;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  gap: 0.4rem;
+  background: #fff;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  font-size: 0.83rem;
+  color: #333;
+  width: 140px;
+  background: transparent;
+}
+
+.search-input::placeholder { color: #aaa; }
+.search-icon { font-size: 0.9rem; color: #888; }
+
+/* ================================
+   TABLE
+================================ */
+.citas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.citas-table th {
+  text-align: left;
+  padding: 0.7rem 0.8rem;
+  border-bottom: 2px solid #ddd;
+  border-top: 1px solid #ddd;
+  color: #222;
+  font-weight: 700;
+  background: #fff;
+}
+
+.citas-table td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  vertical-align: middle;
+}
+
+.citas-table tbody tr:hover { background: #f9f9f9; }
+
+.email-link {
+  color: #1a6ef5;
+  text-decoration: none;
+  font-size: 0.82rem;
+}
+
+.email-link:hover { text-decoration: underline; }
+
+/* Estado badges */
+.estado-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.estado-confirmada { color: #15803d; }
+.estado-pendiente  { color: #92400e; }
+.estado-cancelada  { color: #b91c1c; }
+
+/* Acciones */
+.acciones {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.btn-check {
+  background: #1a6ef5;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.btn-check:hover { background: #1558cc; }
+
+.btn-edit {
+  background: #39ff14;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.btn-edit:hover { background: #2dcc10; }
+
+.btn-delete {
+  background: #ef4444;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.btn-delete:hover { background: #dc2626; }
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 800px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .citas-container {
+    overflow-x: auto;
+  }
+
+  .citas-table {
+    min-width: 700px;
+  }
+
+  .filters-row {
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 0.5rem;
+  }
+}

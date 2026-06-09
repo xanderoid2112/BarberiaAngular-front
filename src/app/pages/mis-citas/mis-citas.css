@@ -1,0 +1,158 @@
+/* ================================
+   HEADER
+================================ */
+.citas-header {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+}
+
+.citas-header .header-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.citas-header .header-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.3rem;
+}
+
+.citas-header .header-subtitle {
+  font-size: 0.92rem;
+  color: #666;
+}
+
+/* ================================
+   TABLE CONTAINER
+================================ */
+.citas-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.table-icon {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.table-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.table-sublabel {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.btn-nueva-cita {
+  background: #1a6ef5;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-nueva-cita:hover { background: #1558cc; }
+
+/* ================================
+   TABLE
+================================ */
+.citas-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.citas-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #ddd;
+  border-top: 1px solid #ddd;
+  color: #222;
+  font-weight: 700;
+  background: #fff;
+}
+
+.citas-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  vertical-align: middle;
+}
+
+.citas-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* Actions column */
+.acciones {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.btn-edit {
+  background: #39ff14;
+  border: none;
+  padding: 0.35rem 0.55rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.btn-edit:hover { background: #2dcc10; }
+
+.btn-delete {
+  background: #ef4444;
+  border: none;
+  padding: 0.35rem 0.55rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.btn-delete:hover { background: #dc2626; }
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 700px) {
+  .citas-container {
+    padding: 0 0.5rem 2rem;
+    overflow-x: auto;
+  }
+
+  .citas-table {
+    min-width: 550px;
+  }
+}
