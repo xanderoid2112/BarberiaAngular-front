@@ -1,0 +1,60 @@
+<div class="equipo-header">
+  <div class="header-icon">👥</div>
+  <h1 class="header-title">Nuestro Equipo</h1>
+  <p class="header-subtitle">Conoce a los profesionales que hacen posible la experiencia</p>
+</div>
+
+
+<div class="equipo-section-title">
+  <h2>Conoce a Nuestros Profesionales</h2>
+  <p>Cada miembro de nuestro equipo está comprometido con la excelencia y la satisfacción del cliente</p>
+</div>
+
+
+<div class="equipo-grid">
+
+  @for (barbero of barberosLista(); track barbero.id) {
+  <div class="barbero-card">
+    <div class="barbero-info">
+      <h3 class="barbero-nombre">{{ barbero.nombre }}</h3>
+      <span class="barbero-rol">{{ barbero.especialidad || 'Barbero' }}</span>
+      <p class="barbero-desc">
+        {{ barbero.descripcion || 'Especialista en cortes clásicos y modernos. Experto en técnicas de degradado y
+        estilos personalizados.' }}
+      </p>
+    </div>
+
+    <div class="barbero-horarios">
+      <div class="horario-header">
+        <span class="horario-icon">📅</span>
+        <span class="horario-label">Horarios disponibles</span>
+      </div>
+      <p class="horario-dias">Lun - Sáb</p>
+      <div class="horario-slots">
+        <span class="slot">9:00 AM</span>
+        <span class="slot">10:30 AM</span>
+        <span class="slot">12:00 PM</span>
+        <span class="slot">1:00 PM</span>
+        <span class="slot">2:30 PM</span>
+        <span class="slot">4:30 PM</span>
+        <span class="slot">6:00 PM</span>
+      </div>
+    </div>
+
+    @if (isLoggedIn) {
+    <button class="btn-reservar-cita" routerLink="/productos">
+      Reservar
+    </button>
+    } @else {
+    <button class="btn-reservar-cita" [routerLink]="['/login']" [queryParams]="{ returnUrl: '/equipo' }">
+      Inicia sesión para poder reservar tu cita
+    </button>
+    }
+  </div>
+  } @empty {
+  <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+    <p style="color: #666;">Cargando equipo de profesionales...</p>
+  </div>
+  }
+
+</div>
