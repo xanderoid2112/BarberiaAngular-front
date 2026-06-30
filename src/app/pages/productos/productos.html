@@ -1,0 +1,179 @@
+<div class="booking-bar">
+  <span>Barberia: <strong>{{ barberiaNombre }}</strong></span>
+  <span>Barbero: <strong>{{ barberoNombre }}</strong></span>
+  <span>Horario: <strong>{{ horarioSeleccionado }}</strong></span>
+</div>
+
+<!-- HEADER -->
+<div class="productos-header">
+  <div class="header-left">
+    <span class="header-icon">🏪</span>
+    <h1 class="header-title">Tienda de Productos de la Barberia</h1>
+  </div>
+  <p class="header-subtitle">Compra algun producto para usar durante<br />tu visita o para llevartelo a tu casa</p>
+</div>
+
+<!-- SEARCH BAR -->
+<div class="search-container">
+  <span class="search-label">Coleccion de Productos</span>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search-input" placeholder="Buscar productos...." [(ngModel)]="textoBusqueda" (keyup)="aplicarFiltro()" />
+  </div>
+  <button class="btn-filtrar">🔽 Filtrar</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="productos-content">
+
+  <!-- SIDEBAR FILTERS -->
+  <aside class="filters-sidebar">
+    <h3 class="filters-title">Categorias</h3>
+    <ul class="filters-list">
+      <li class="filter-item">
+  <input type="checkbox" id="capilares" class="filter-checkbox" [(ngModel)]="filtrosCategorias.capilares" />
+  <label for="capilares">Productos Capilares</label>
+</li>
+<li class="filter-item">
+  <input type="checkbox" id="tintes" class="filter-checkbox" [(ngModel)]="filtrosCategorias.tintes" />
+  <label for="tintes">Tintes y Coloración</label>
+</li>
+<li class="filter-item">
+  <input type="checkbox" id="herramientas" class="filter-checkbox" [(ngModel)]="filtrosCategorias.herramientas" />
+  <label for="herramientas">Herramientas</label>
+</li>
+<li class="filter-item">
+  <input type="checkbox" id="accesorios" class="filter-checkbox" [(ngModel)]="filtrosCategorias.accesorios" />
+  <label for="accesorios">Accesorios</label>
+</li>
+    </ul>
+
+  <div class="price-range">
+  <h4 class="range-title">Rango de Precio</h4>
+  <input type="range" min="0" max="500" class="range-slider" [(ngModel)]="precioMaximo" (input)="aplicarFiltro()" />
+  <div class="range-labels">
+    <span>S/.0</span>
+    <span>S/.500</span>
+  </div>
+  <p class="range-max">Máximo S/. {{ precioMaximo }}</p>
+</div>
+
+   <div class="disponibilidad">
+  <h4 class="range-title">Disponibilidad</h4>
+  <ul class="filters-list">
+    <li class="filter-item">
+      <input type="checkbox" id="enstock" class="filter-checkbox" [(ngModel)]="filtrosDisponibilidad.enStock" />
+      <label for="enstock">En Stock</label>
+    </li>
+    <li class="filter-item">
+      <input type="checkbox" id="agotado" class="filter-checkbox" [(ngModel)]="filtrosDisponibilidad.agotado" />
+      <label for="agotado">Agotado</label>
+    </li>
+  </ul>
+</div>
+
+<div class="filter-actions">
+  <button class="btn-apply" (click)="aplicarFiltro()">✓ Aplicar Filtro</button>
+  <button class="btn-clear" (click)="limpiarFiltros()">↺ Limpiar</button>
+</div>
+  </aside>
+
+  <!-- RIGHT COLUMN -->
+  <div class="productos-right">
+
+    <!-- PRODUCTS GRID -->
+   <div class="productos-grid">
+
+      @for (producto of productosLista(); track producto.id) {
+        <div class="producto-card">
+          <div class="card-brand">TIENDA</div>
+          <img [src]="producto.imagen || '/assets/productos/ossion-cera.jpg'" alt="Producto" class="producto-img" style="object-fit: cover; aspect-ratio: 1/1;" />
+          
+  <div class="card-body">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              @for (cat of obtenerCategoriasComoLista(producto.categoria); track cat) {
+                <span class="tag" [ngClass]="obtenerClaseCategoria(cat)">
+                  {{ cat }}
+                </span>
+              }
+            </div>
+            <h4 class="producto-nombre">{{ producto.nombre }}</h4>
+            <p class="producto-marca" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+              {{ producto.descripcion }}
+            </p>
+            
+            <div class="card-footer" style="margin-top: 10px;">
+              @if (producto.stock > 0) { 
+                <span class="badge-stock">Stock</span>
+                <span class="unidades">📦 {{ producto.stock }} unid.</span>
+              } @else {
+                <span class="badge-agotado">Agotado</span>
+              }
+              
+              <span class="producto-precio">S/.{{ producto.precio }}</span>
+              
+              <button cclass="btn-agregar" 
+        [disabled]="producto.stock === 0" 
+        [style.opacity]="producto.stock === 0 ? '0.5' : '1'"
+        (click)="agregarAlCarrito(producto)"> ✚ Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+          <p style="color: #666;">Cargando productos de la tienda...</p>
+        </div>
+      }
+
+    </div>
+
+    <!-- RESUMEN TABLE + NAVIGATION -->
+    <div class="bottom-row">
+      <!-- Resumen -->
+      <div class="resumen-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Productos</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+        <tbody>
+  @for (item of carrito(); track item.producto.id) {
+    <tr>
+      <td>{{ item.producto.nombre }}</td>
+      <td style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <button (click)="reducirCantidad(item.producto.id)" 
+                style="cursor: pointer; width: 25px; height: 25px; border: 1px solid #ccc; background: #fff; border-radius: 4px; font-weight: bold;">
+          -
+        </button>
+        
+        <span>{{ item.cantidad }}</span>
+        
+        <button (click)="agregarAlCarrito(item.producto)" 
+                [disabled]="item.cantidad >= item.producto.stock"
+                [style.opacity]="item.cantidad >= item.producto.stock ? '0.5' : '1'"
+                style="cursor: pointer; width: 25px; height: 25px; border: 1px solid #ccc; background: #fff; border-radius: 4px; font-weight: bold;">
+          +
+        </button>
+      </td>
+    </tr>
+  } @empty {
+    <tr>
+      <td colspan="2" style="text-align: center; color: #888; padding: 15px;">Aún no hay productos</td>
+    </tr>
+  }
+</tbody>
+        </table>
+      </div>
+
+      <!-- Navigation buttons -->
+     <div class="nav-buttons">
+        <button class="btn-retroceder" routerLink="/equipo">↺ Retroceder</button>
+       <button class="btn-siguiente" (click)="irAConfirmacion()">✓ Siguiente</button>
+      </div>
+    </div>
+
+  </div>
+</div>

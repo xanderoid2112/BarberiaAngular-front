@@ -1,0 +1,333 @@
+/* ================================
+   TOP LINK BAR
+================================ */
+.top-link-bar {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 950px;
+  margin: 1rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.btn-toggle-view {
+  background: #39ff14;
+  color: #000;
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.btn-toggle-view:hover { background: #2dcc10; }
+
+/* ================================
+   FORM CARD
+================================ */
+.form-card {
+  max-width: 950px;
+  margin: 1rem auto 2rem;
+  padding: 0 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.form-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.6rem 0 1rem;
+  border-bottom: 1px solid #ddd;
+  margin: 0 -1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.form-icon {
+  font-size: 2rem;
+}
+
+.form-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.3rem;
+}
+
+.form-subtitle {
+  font-size: 0.88rem;
+  color: #666;
+}
+
+/* Subsection title (used in empleados) */
+.form-subsection-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222;
+  padding: 1.2rem 0 0.8rem;
+}
+
+.form-divider {
+  border-top: 1px solid #eee;
+  margin: 0.5rem 0;
+}
+
+/* ================================
+   FORM BODY
+================================ */
+.form-body {
+  padding: 1.2rem 0 1.6rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field.full-width {
+  margin-top: 0.3rem;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.field-icon {
+  font-size: 0.9rem;
+}
+
+.field-input,
+.field-select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  color: #222;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.field-input:focus,
+.field-select:focus {
+  border-color: #39ff14;
+}
+
+.field-input-small {
+  max-width: 280px;
+}
+
+.field-textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  color: #222;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.field-textarea:focus { border-color: #39ff14; }
+
+/* ================================
+   FORM ACTIONS
+================================ */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.btn-guardar {
+  background: #39ff14;
+  color: #000;
+  border: none;
+  padding: 0.6rem 1.3rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-guardar:hover { background: #2dcc10; }
+
+.btn-limpiar {
+  background: #1a6ef5;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.3rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-limpiar:hover { background: #1558cc; }
+
+/* ================================
+   LIST TABLE CONTAINER
+================================ */
+.lista-container {
+  max-width: 950px;
+  margin: 0 auto 3rem;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lista-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.lista-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lista-icon {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.lista-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.badge-total {
+  background: #bbf7a0;
+  color: #166534;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 6px;
+}
+
+.badge-total-dark {
+  background: #1e293b;
+  color: #fff;
+}
+
+/* ================================
+   LIST TABLE
+================================ */
+.lista-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.lista-table th {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 2px solid #ddd;
+  color: #222;
+  font-weight: 700;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.lista-table td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.lista-table tbody tr:hover { background: #f9f9f9; }
+
+.email-link {
+  color: #1a6ef5;
+  text-decoration: none;
+}
+
+.email-link:hover { text-decoration: underline; }
+
+.estado-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.estado-stock  { background: #39ff14; color: #000; }
+.estado-agotado { background: #f87171; color: #fff; }
+.estado-activo { background: #1e8a5f; color: #fff; }
+
+.acciones {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btn-edit {
+  background: #39ff14;
+  border: none;
+  padding: 0.3rem 0.55rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background 0.2s;
+}
+
+.btn-edit:hover { background: #2dcc10; }
+
+.btn-delete {
+  background: #ef4444;
+  border: none;
+  padding: 0.3rem 0.55rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background 0.2s;
+}
+
+.btn-delete:hover { background: #dc2626; }
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 700px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lista-container {
+    overflow-x: auto;
+  }
+
+  .lista-table {
+    min-width: 700px;
+  }
+}

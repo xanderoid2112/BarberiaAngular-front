@@ -1,0 +1,87 @@
+<div class="equipo-header">
+  <div class="header-icon">👥</div>
+  <h1 class="header-title">Nuestro Equipo</h1>
+  <p class="header-subtitle">Conoce a los profesionales que hacen posible la experiencia</p>
+</div>
+
+<div style="text-align: center; margin: 2rem auto; max-width: 400px; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee;">
+  <label style="display: block; font-weight: 800; font-size: 1.1rem; color: #111; margin-bottom: 0.8rem;">
+    📅 ¿Qué día te gustaría atenderte?
+  </label>
+  <input type="date" 
+         [(ngModel)]="fechaSeleccionada" 
+         (change)="onFechaChange()" 
+         [min]="fechaMinima"
+         style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 2px solid #1a6ef5; font-size: 1rem; color: #333; outline: none; cursor: pointer;">
+</div>
+
+<div class="equipo-section-title">
+  <h2>Conoce a Nuestros Profesionales</h2>
+  <p>Cada miembro de nuestro equipo está comprometido con la excelencia y la satisfacción del cliente</p>
+</div>
+
+<div class="equipo-grid">
+  @for (barbero of barberosLista(); track barbero.id) {
+  <div class="barbero-card">
+    <div class="barbero-info">
+      <h3 class="barbero-nombre">{{ barbero.nombre }}</h3>
+      <span class="barbero-rol">{{ barbero.especialidad || 'Barbero' }}</span>
+      <p class="barbero-desc">
+        {{ barbero.descripcion || 'Especialista en cortes y estilos personalizados.' }}
+      </p>
+    </div>
+
+    <div class="barbero-horarios">
+      <div class="horario-header">
+        <span class="horario-icon">⏰</span>
+        <span class="horario-label">Disponibilidad</span>
+      </div>
+      
+      <div class="horario-slots" style="margin-top: 10px;">
+        @if (!fechaSeleccionada) {
+          <div style="background: #fef08a; padding: 0.5rem; border-radius: 5px; text-align: center; color: #854d0e; font-size: 0.85rem; width: 100%;">
+            ☝️ Selecciona una fecha arriba
+          </div>
+        } @else {
+          @for (horario of horariosDisponiblesPorBarbero[barbero.id]; track horario) {
+            <button 
+              class="slot-btn" 
+              [class.active]="horariosSeleccionados[barbero.id] === horario"
+              (click)="seleccionarHorario(barbero.id, horario)">
+              {{ horario }}
+            </button>
+          } @empty {
+            <div style="background: #fecaca; padding: 0.5rem; border-radius: 5px; text-align: center; color: #991b1b; font-size: 0.85rem; width: 100%;">
+              🚫 Sin turnos este día
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    @if (isLoggedIn) {
+      <button class="btn-reservar-cita" 
+            [disabled]="!horariosSeleccionados[barbero.id]"
+            [style.opacity]="!horariosSeleccionados[barbero.id] ? '0.5' : '1'"
+            [routerLink]="['/productos']" 
+            [queryParams]="{ 
+              barberiaId: barberiaIdActual, 
+              barberiaNombre: barberiaNombreActual,
+              barberoId: barbero.id,
+              barberoNombre: barbero.nombre,
+              fecha: fechaSeleccionada,     horario: horariosSeleccionados[barbero.id]
+            }">
+      Siguiente paso 🛒
+    </button>
+    } @else {
+      <button class="btn-reservar-cita" [routerLink]="['/login']" [queryParams]="{ returnUrl: '/equipo' }">
+        Inicia sesión para reservar
+      </button>
+    }
+  </div>
+  } @empty {
+  <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+    <p style="color: #666;">Cargando equipo de profesionales...</p>
+  </div>
+  }
+</div>

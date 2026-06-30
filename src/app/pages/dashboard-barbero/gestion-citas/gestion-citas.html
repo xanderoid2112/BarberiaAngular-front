@@ -1,0 +1,136 @@
+<div class="gestion-header">
+  <span class="header-icon">📅</span>
+  <h1 class="header-title">Gestión de Citas (Barbero)</h1>
+  <p class="header-subtitle">Panel de control de tus próximos servicios</p>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card stat-green">
+    <span class="stat-icon">📅</span>
+    <span class="stat-number">{{ totalCitas() }}</span>
+    <span class="stat-label">Total Citas</span>
+  </div>
+  <div class="stat-card stat-blue">
+    <span class="stat-icon">🕐</span>
+    <span class="stat-number">{{ pendientes() }}</span>
+    <span class="stat-label">Pendientes / En Proceso</span>
+  </div>
+  <div class="stat-card stat-dark">
+    <span class="stat-icon">✔✔</span>
+    <span class="stat-number">{{ completadas() }}</span>
+    <span class="stat-label">Completadas</span>
+  </div>
+</div>
+
+<div class="citas-container">
+  <div class="table-topbar">
+    <div class="table-topbar-left">
+      <span class="table-icon">≡</span>
+      <span class="table-label">Tu agenda ordenada</span>
+    </div>
+    <div class="table-topbar-right">
+      <button class="btn-actualizar" (click)="cargarCitas()">↺ Actualizar Tabla</button>
+    </div>
+  </div>
+
+  <table class="citas-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Teléfono</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Productos</th>
+        <th>Estado</th>
+        <th>Acciones Rápidas</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (cita of citasLista(); track cita.id) {
+        <tr>
+          <td>#{{ cita.id }}</td>
+          <td style="font-weight: 700;">{{ cita.usuario?.nombre || 'Cliente Anónimo' }}</td>
+          <td>{{ cita.usuario?.celular || cita.usuario?.telefono || 'No registrado' }}</td>
+          <td>{{ cita.fecha }}</td>
+          <td style="font-weight: bold;">{{ cita.hora }}</td>
+          
+          <td>
+            <button class="btn-productos" (click)="verProductos(cita.id)">
+              🛒 Ver Detalle
+            </button>
+          </td>
+          
+          <td>
+            <span class="estado-badge"
+                  [ngClass]="{
+                    'estado-pendiente': cita.estado === 'PENDIENTE',
+                    'estado-ejecucion': cita.estado === 'EN_EJECUCION',
+                    'estado-terminado': cita.estado === 'TERMINADO',
+                    'estado-cancelada': cita.estado === 'CANCELADA'
+                  }">
+              {{ cita.estado.replace('_', ' ') }}
+            </span>
+          </td>
+          
+          <td class="acciones" style="display: flex; gap: 5px;">
+            @if (cita.estado === 'PENDIENTE') {
+              <button class="btn-check" style="background:#f59e0b; color:#fff;" (click)="cambiarEstado(cita.id, 'EN_EJECUCION')" title="Pasar a En Ejecución">▶ Iniciar</button>
+            }
+            
+            @if (cita.estado === 'EN_EJECUCION') {
+              <button class="btn-check" style="background:#10b981; color:#fff;" (click)="cambiarEstado(cita.id, 'TERMINADO')" title="Marcar como Terminado">✔ Terminar</button>
+            }
+
+            @if (cita.estado !== 'CANCELADA' && cita.estado !== 'TERMINADO') {
+              <button class="btn-delete" style="background:#ef4444; color:#fff;" (click)="cambiarEstado(cita.id, 'CANCELADA')" title="Cancelar cita">🚫 Cancelar</button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="8" style="text-align: center; padding: 3rem; color: #666;">
+            Cargando información o no tienes citas programadas...
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+@if (mostrarModal()) {
+  <div class="modal-overlay" (click)="cerrarModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Productos de la Cita #{{ citaSeleccionadaId() }}</h2>
+        <button class="btn-close" (click)="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        @if (productosCita().length > 0) {
+          <table class="modal-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cant.</th>
+                <th>Precio Unit.</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of productosCita(); track item.id) {
+                <tr>
+                  <td>{{ item.producto?.nombre }}</td>
+                  <td style="text-align: center;">{{ item.cantidad }}</td>
+                  <td>S/.{{ item.precioUnitario }}</td>
+                  <td style="font-weight: 700;">S/.{{ item.cantidad * item.precioUnitario }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <p class="no-products">❌ El cliente no solicitó productos para esta cita.</p>
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,73 @@
+<div class="confirmacion-header">
+  <span class="header-icon">📅</span>
+  <h1 class="header-title">Confirmación de cita</h1>
+</div>
+
+<p class="confirmacion-subtitle">
+  Verifica que tus datos esten correctos y que las opciones seleccionadas sean las correctas:
+</p>
+
+<div class="confirmacion-content">
+
+  <div class="confirmacion-left">
+
+    <table class="datos-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Numero de celular</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="dato-valor">{{ usuario.nombre || 'Cargando...' }}</span>
+            <button class="btn-edit">✏️</button>
+          </td>
+          <td>
+            <span class="dato-valor">{{ usuario.telefono || 'Cargando...' }}</span>
+            <button class="btn-edit">✏️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<div class="booking-bar">
+      <span>Barberia: <strong>{{ barberiaNombre }}</strong></span>
+      <span>Barbero: <strong>{{ barberoNombre }}</strong></span>
+      <span>Fecha: <strong>{{ fechaSeleccionada }}</strong></span>
+      <span>Horario: <strong>{{ horarioSeleccionado }}</strong></span>
+    </div>
+
+  </div>
+
+  <div class="confirmacion-right">
+
+    <table class="resumen-table">
+      <thead>
+        <tr>
+          <th>Productos</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of carrito; track item.producto.id) {
+          <tr>
+            <td>{{ item.producto.nombre }}</td>
+            <td style="text-align: center;">{{ item.cantidad }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="2" style="text-align: center; color: #888;">Sin productos adicionales</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="nav-buttons">
+      <button class="btn-retroceder" routerLink="/productos">↺ Retroceder</button>
+     <button class="btn-confirmar" (click)="confirmarReserva()">Confirmar Reserva</button>
+    </div>
+
+  </div>
+
+</div>
