@@ -1,0 +1,39 @@
+name: BarberFlow Frontend CI/CD
+
+# Se dispara con Pushes o Pull Requests a la rama main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-angular:
+    runs-on: ubuntu-latest
+
+    steps:
+    #Descargara el código fuente del repositorio
+    - name: 1. Checkout del código fuente
+      uses: actions/checkout@v4
+
+    #Configurara Node.js en la máquina virtual de GitHub
+    - name: 2. Configurar Node.js (Versión 20)
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm' # Activa la caché global para acelerar la instalación de paquetes
+
+    #Instalara todas las dependencias del proyecto de manera limpia
+    - name: 3. Instalar Dependencias de Node
+      run: npm ci
+
+    #Compilar el proyecto de Angular optimizado para producción
+    - name: 4. Compilar Proyecto Angular para Producción
+      run: npm run build -- --configuration production
+
+    # PASO 5: Guardar la carpeta de distribución compilada (dist/) como artefacto
+    - name: 5. Subir Carpeta de Producción (dist)
+      uses: actions/upload-artifact@v4
+      with:
+        name: barberflow-frontend-dist
+        path: dist/
