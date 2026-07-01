@@ -1,0 +1,118 @@
+<div class="top-link-bar">
+  <a routerLink="/gestion-productos" class="btn-toggle-view">📤 Gestionar productos</a>
+</div>
+
+<div class="form-card">
+  <div class="form-card-header">
+    <span class="form-icon">✂️</span>
+    <div>
+      <h1 class="form-title">Gestión de Empleados</h1>
+      <p class="form-subtitle">Registrar nuevos barberos del sistema</p>
+    </div>
+  </div>
+
+  <div class="form-subsection-title">
+    <span class="field-icon">👤</span> Perfil y Acceso
+  </div>
+
+  <div class="form-body">
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">👤</span> Nombre Completo</label>
+        <input type="text" class="field-input" [(ngModel)]="empleadoActual.nombre" placeholder="Ej. Carlos Perez" />
+      </div>
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">✉️</span> Email de acceso</label>
+        <input type="email" class="field-input" [(ngModel)]="empleadoActual.email" placeholder="carlos@barber.com" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">🔒</span> Contraseña provisional</label>
+        <input type="text" class="field-input" [(ngModel)]="empleadoActual.password" placeholder="123456" />
+      </div>
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">📱</span> Celular</label>
+        <input type="text" class="field-input" [(ngModel)]="empleadoActual.telefono" placeholder="999..." />
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <div class="form-subsection-title">
+      <span class="field-icon">💼</span> Perfil Profesional
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">⭐</span> Especialidad</label>
+        <input type="text" class="field-input" [(ngModel)]="empleadoActual.especialidad" placeholder="Ej. Fade & Diseños" />
+      </div>
+   <div class="form-field">
+        <label class="field-label"><span class="field-icon">⏰</span> Horarios Semanales (Separados por coma)</label>
+        <input type="text" class="field-input" [(ngModel)]="empleadoActual.horariosTexto" 
+               placeholder="Ej: Lunes - 10:00 AM, Lunes - 11:00 AM, Martes - 03:00 PM" />
+      </div>
+    </div>
+
+    <div class="form-field full-width">
+      <textarea class="field-textarea" [(ngModel)]="empleadoActual.descripcion" placeholder="💬 Breve descripción del barbero..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-limpiar" (click)="limpiarFormulario()">↺ Limpiar</button>
+      <button class="btn-guardar" (click)="guardarEmpleado()">📤 Registrar Barbero</button>
+    </div>
+  </div>
+</div>
+
+<div class="lista-container">
+  <div class="lista-header">
+    <div class="lista-header-left">
+      <span class="lista-icon">👥</span>
+      <span class="lista-title">Barberos en tu sucursal</span>
+    </div>
+    <span class="badge-total badge-total-dark">Total: {{ empleadosLista().length }}</span>
+  </div>
+
+  <table class="lista-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Especialidad</th>
+        <th>Email de Acceso</th>
+        <th>Celular</th>
+        <th>Horarios</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (empleado of empleadosLista(); track empleado.id) {
+        <tr>
+          <td>#{{ empleado.id }}</td>
+          <td style="font-weight: bold;">{{ empleado.nombre }}</td>
+          <td>{{ empleado.especialidad }}</td>
+          
+          <td><a [href]="'mailto:' + empleado.usuario?.email" class="email-link">{{ empleado.usuario?.email }}</a></td>
+          <td>{{ empleado.usuario?.telefono }}</td>
+          
+          <td style="font-size: 0.8rem; color: #555;">
+            {{ empleado.horarios?.join(', ') || 'Sin horarios' }}
+          </td>
+          
+          <td class="acciones">
+            <button class="btn-delete" title="Eliminar" (click)="eliminarEmpleado(empleado.id)">🗑️</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7" style="text-align: center; padding: 2rem; color: #666;">
+            Aún no hay barberos registrados en esta sucursal.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

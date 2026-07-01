@@ -156,3 +156,109 @@
     min-width: 550px;
   }
 }
+/* ================================
+   BOTÓN Y MODAL DE PRODUCTOS
+================================ */
+.btn-productos {
+  background-color: #1a6ef5;
+  color: #fff;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-productos:hover {
+  background-color: #1558cc;
+}
+
+/* Capa oscura de fondo */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* Caja blanca del cuadro de diálogo */
+.modal-content {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+}
+
+.btn-close:hover {
+  color: #333;
+}
+
+/* Tabla interna del modal */
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.modal-table th {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.modal-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  color: #333;
+}
+
+.no-products {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,125 @@
+<div class="top-link-bar">
+  <a routerLink="/gestion-empleados" class="btn-toggle-view">📤 Gestionar empleados</a>
+</div>
+
+<div class="form-card">
+  <div class="form-card-header">
+    <span class="form-icon">📦</span>
+    <div>
+      <h1 class="form-title">Gestión de Productos</h1>
+      <p class="form-subtitle">Administra el inventario y catálogo de tu barbería</p>
+    </div>
+  </div>
+
+  <div class="form-body">
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">🏷️</span> Nombre del Producto</label>
+        <input type="text" class="field-input" [(ngModel)]="productoActual.nombre" placeholder="Ej. Cera Mate" />
+      </div>
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">$</span> Precio (S/.)</label>
+        <input type="number" class="field-input" [(ngModel)]="productoActual.precio" placeholder="0.0" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">📦</span> Stock disponible</label>
+        <input type="number" class="field-input" [(ngModel)]="productoActual.stock" placeholder="0" />
+      </div>
+      <div class="form-field">
+        <label class="field-label"><span class="field-icon">📁</span> Categoría</label>
+        <select class="field-select" [(ngModel)]="productoActual.categoria">
+          <option value="Gel">Gel</option>
+          <option value="Cera">Cera</option>
+          <option value="Aceites">Aceites</option>
+          <option value="Capilares">Capilares</option>
+          <option value="Accesorios">Accesorios</option>
+        </select>
+      </div>
+    </div>
+
+   <div class="form-field full-width">
+      <textarea class="field-textarea" [(ngModel)]="productoActual.descripcion" placeholder="💬 Descripción del producto..."></textarea>
+    </div>
+
+    <div class="form-field full-width">
+      <label class="field-label"><span class="field-icon">📸</span> Imagen del Producto</label>
+      <input type="file" class="field-input" (change)="onFileSelected($event)" accept="image/*" />
+      
+      @if (productoActual.imagen) {
+        <div style="margin-top: 10px; text-align: center;">
+          <img [src]="productoActual.imagen" alt="Vista previa" style="max-height: 150px; border-radius: 8px; border: 1px solid #ccc;">
+        </div>
+      }
+    </div>
+
+    <div class="form-actions" style="display: flex; gap: 10px;">
+      <button class="btn-guardar" (click)="guardarProducto()">
+        {{ productoActual.id ? '✏️ Actualizar Producto' : '📤 Guardar Producto' }}
+      </button>
+      
+      @if (productoActual.id) {
+        <button class="btn-delete" style="padding: 0.5rem 1.1rem; border-radius: 6px; cursor:pointer;" (click)="limpiarFormulario()">
+          ❌ Cancelar
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="lista-container">
+  <div class="lista-header">
+    <div class="lista-header-left">
+      <span class="lista-icon">≡</span>
+      <span class="lista-title">Lista de productos</span>
+    </div>
+    <span class="badge-total">Total: {{ productosLista().length }}</span>
+  </div>
+
+  <table class="lista-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (prod of productosLista(); track prod.id) {
+        <tr>
+          <td>#{{ prod.id }}</td>
+          <td style="font-weight: 700;">{{ prod.nombre }}</td>
+          <td>{{ prod.categoria }}</td>
+          <td style="color: #1a6ef5; font-weight: bold;">S/. {{ prod.precio }}</td>
+          <td>{{ prod.stock }} unid.</td>
+          
+          <td>
+            <span class="estado-badge" 
+                  [style.backgroundColor]="prod.stock > 0 ? '#bbf7d0' : '#fecaca'"
+                  [style.color]="prod.stock > 0 ? '#166534' : '#991b1b'"
+                  style="padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">
+              {{ prod.stock > 0 ? 'En Stock' : 'Agotado' }}
+            </span>
+          </td>
+          
+          <td class="acciones">
+            <button class="btn-edit" title="Editar" (click)="editarProducto(prod)">✏️</button>
+            <button class="btn-delete" title="Eliminar" (click)="eliminarProducto(prod.id)">🗑️</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7" style="text-align: center; padding: 3rem; color: #666;">
+            Aún no hay productos registrados en esta barbería.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

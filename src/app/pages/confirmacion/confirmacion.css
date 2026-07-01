@@ -11,21 +11,22 @@
 }
 
 .confirmacion-header .header-icon {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
 }
 
 .confirmacion-header .header-title {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: #111;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
 }
 
 .confirmacion-subtitle {
   max-width: 1000px;
-  margin: 0 auto 1.8rem;
+  margin: 0 auto 2rem;
   padding: 0 2rem;
-  font-size: 0.93rem;
-  color: #333;
+  font-size: 1rem;
+  color: #666;
 }
 
 /* ================================
@@ -33,10 +34,10 @@
 ================================ */
 .confirmacion-content {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 0 2rem 4rem;
   align-items: flex-start;
 }
 
@@ -44,163 +45,176 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.8rem;
 }
 
 .confirmacion-right {
-  flex: 0 0 280px;
+  flex: 0 0 320px; /* Un poco más ancho para que respire el texto */
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 /* ================================
-   DATOS TABLE
+   ESTILO GENERAL DE TABLAS (TIPO CARD)
 ================================ */
-.datos-table {
+.datos-table, .resumen-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.datos-table th {
-  border: 1px solid #bbb;
-  padding: 0.6rem 1rem;
-  text-align: left;
-  font-weight: 600;
-  color: #222;
+  border-collapse: separate; 
+  border-spacing: 0;
   background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Sombra suave y moderna */
+  border: 1px solid #eaeaea;
 }
 
-.datos-table td {
-  border: 1px solid #bbb;
-  padding: 0.6rem 1rem;
-  color: #333;
+.datos-table th, .resumen-table th {
+  background: #f8f9fa;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  font-weight: 700;
+  color: #444;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #eaeaea;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.datos-table td {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
+.datos-table td, .resumen-table td {
+  padding: 1.2rem 1.5rem;
+  color: #444;
+  font-size: 1rem;
+  border-bottom: 1px solid #eaeaea;
 }
 
+.datos-table tr:last-child td, .resumen-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ================================
+   DATOS DEL CLIENTE SPECIFIC
+================================ */
 .dato-valor {
-  font-size: 0.92rem;
+  font-weight: 600;
   color: #111;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .btn-edit {
-  background: #39ff14;
-  border: none;
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
+  background: #f1f5f9;
+  border: 1px solid #dbe4eb;
+  padding: 0.4rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
-  transition: background 0.2s;
-  line-height: 1;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  float: right; /* Alinea el lápiz a la derecha de forma limpia */
 }
 
 .btn-edit:hover {
-  background: #2dcc10;
-}
-
-/* Fix: table td with flex inside */
-.datos-table tbody tr {
-  display: contents;
+  background: #39ff14;
+  border-color: #2dcc10;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(57, 255, 20, 0.3);
 }
 
 /* ================================
-   BOOKING BAR
+   BOOKING BAR (RESUMEN INFERIOR)
 ================================ */
 .booking-bar {
   display: flex;
-  gap: 1.5rem;
-  padding: 0.8rem 1.2rem;
-  border: 1px solid #bbb;
-  border-radius: 6px;
-  background: #fff;
-  font-size: 0.88rem;
-  color: #333;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+  font-size: 0.95rem;
+  color: #666;
   flex-wrap: wrap;
 }
 
+.booking-bar span {
+  display: flex;
+  flex-direction: column; /* Apila el título y el valor */
+  gap: 0.4rem;
+}
+
+.booking-bar strong {
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
 /* ================================
-   RESUMEN TABLE
+   RESUMEN DE PRODUCTOS SPECIFIC
 ================================ */
-.resumen-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.resumen-table th {
-  border: 1px solid #bbb;
-  padding: 0.55rem 1rem;
-  text-align: left;
-  font-weight: 600;
-  color: #222;
-  background: #fff;
-}
-
-.resumen-table td {
-  border: 1px solid #bbb;
-  padding: 0.55rem 1rem;
-  color: #333;
-}
-
 .resumen-table td:last-child {
   text-align: center;
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #1a6ef5; /* Color azul para destacar la cantidad */
 }
 
 /* ================================
-   NAV BUTTONS
+   BOTONES DE NAVEGACIÓN
 ================================ */
 .nav-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
 }
 
-.btn-retroceder {
-  background: #1a6ef5;
-  color: #fff;
+.btn-retroceder, .btn-confirmar {
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.btn-retroceder:hover { background: #1558cc; }
+/* Botón secundario */
+.btn-retroceder {
+  background: #f1f5f9;
+  color: #1a6ef5;
+  border: 1px solid #dbe4eb;
+}
 
+.btn-retroceder:hover { 
+  background: #e2e8f0; 
+  transform: translateY(-2px);
+}
+
+/* Botón principal (Llamado a la acción) */
 .btn-confirmar {
   background: #39ff14;
   color: #000;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-align: center;
+  box-shadow: 0 4px 12px rgba(57, 255, 20, 0.2);
 }
 
-.btn-confirmar:hover { background: #2dcc10; }
+.btn-confirmar:hover { 
+  background: #2dcc10; 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(57, 255, 20, 0.35);
+}
 
 /* ================================
-   RESPONSIVE
+   DISEÑO RESPONSIVO (MÓVILES)
 ================================ */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .confirmacion-content {
     flex-direction: column;
-    padding: 0 1rem 2rem;
+    padding: 0 1.5rem 3rem;
   }
 
   .confirmacion-right {
@@ -210,6 +224,7 @@
 
   .booking-bar {
     flex-direction: column;
-    gap: 0.3rem;
+    align-items: flex-start;
+    gap: 1.2rem;
   }
 }

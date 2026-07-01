@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'; // 1. Importamos OnInit
+import { Component, OnInit } from '@angular/core'; 
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router'; // 2. Importamos ActivatedRoute
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class Login implements OnInit { 
   credenciales = { email: '', password: '' };
   errorMessage = '';
-  returnUrl: string = '/home'; // Variable para guardar la ruta de destino (por defecto /home)
+  returnUrl: string = '/home'; // Variable para guardar la ruta de destino
 
   constructor(
     private authService: AuthService, 
@@ -30,11 +30,20 @@ export class Login implements OnInit {
       next: (user) => {
         localStorage.setItem('usuario', JSON.stringify(user));
         
-        if (user.rol === 'BARBERO' || user.rol === 'ADMIN') {
+        // 1. Si es Administrador, lo enviamos a su panel principal
+        if (user.rol === 'ADMIN') {
+          this.router.navigate(['/gestion-productos']).then(() => {
+            window.location.reload();
+          });
+        } 
+        // 2. Si es Barbero, lo enviamos a su gestor de citas
+        else if (user.rol === 'BARBERO') {
           this.router.navigate(['/gestion-citas']).then(() => {
             window.location.reload();
           });
-        } else {
+        } 
+        // 3. Si es un Cliente, lo devolvemos a donde estaba (o al Home)
+        else {
           this.router.navigate([this.returnUrl]).then(() => {
             window.location.reload();
           });

@@ -156,3 +156,23 @@
     padding: 0 1rem 2rem;
   }
 }
+.slot-btn {
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slot-btn:hover {
+  background-color: #e5e7eb;
+}
+.slot-btn.active {
+  background-color: #10b981; /* Verde esmeralda */
+  color: white;
+  border-color: #10b981;
+  font-weight: bold;
+}

@@ -1,6 +1,4 @@
-/* ================================
-   VARIABLES (heredadas del proyecto)
-================================ */
+
 :root {
   --color-green: #39ff14;
   --color-green-dark: #2dcc10;
@@ -11,9 +9,6 @@
   --color-border: #d0d0d0;
 }
 
-/* ================================
-   HEADER
-================================ */
 .barberias-header {
   text-align: center;
   padding: 2.5rem 1rem 1.5rem;
@@ -37,9 +32,6 @@
   line-height: 1.6;
 }
 
-/* ================================
-   SEARCH BAR
-================================ */
 .search-container {
   display: flex;
   align-items: center;
@@ -87,9 +79,6 @@
   color: #aaa;
 }
 
-/* ================================
-   MAIN LAYOUT
-================================ */
 .barberias-content {
   display: flex;
   gap: 1.5rem;
@@ -99,9 +88,6 @@
   align-items: flex-start;
 }
 
-/* ================================
-   SIDEBAR FILTERS
-================================ */
 .filters-sidebar {
   flex: 0 0 220px;
   background: var(--color-gray-light);
@@ -184,9 +170,6 @@
   background-color: #1558cc;
 }
 
-/* ================================
-   CARDS GRID
-================================ */
 .barberias-grid {
   flex: 1;
   display: grid;
@@ -289,9 +272,6 @@
   background-color: var(--color-green-dark);
 }
 
-/* ================================
-   RESPONSIVE
-================================ */
 @media (max-width: 900px) {
   .barberias-grid {
     grid-template-columns: repeat(2, 1fr);
